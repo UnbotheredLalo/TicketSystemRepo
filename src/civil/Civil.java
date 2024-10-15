@@ -6,7 +6,7 @@ import ticket.Ticket;
 
 public class Civil extends Ticket {
 
-    public Category civilType = Category.CIVIL ;
+    private Category civilType = Category.CIVIL;
     private static final int MINIMUM_FINE_CIVIL = 20;
     private static final double MAX_DISCOUNT_CIVIL = 0.30;
 
