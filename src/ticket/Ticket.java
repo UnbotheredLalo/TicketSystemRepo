@@ -1,21 +1,22 @@
 package ticket;
 
 import datetimeutils.DateTimeUtils;
+import java.time.ZonedDateTime;
 
 public class Ticket {
 
-    public long fineID;
+    private long fineID;
     private final GovAuthorities authorityName;
-    public DateTimeUtils issueDate;
-    public Boolean isPaid;
-    public double fine;
+    private ZonedDateTime issueDate;
+    private Boolean isPaid;
+    private double fine;
     private static final double UMA = 207.44;
 
-    public Ticket(long fineID, DateTimeUtils issueDate, GovAuthorities authorityName, Boolean isPaid) {
-        this.fineID = fineID;
-        this.issueDate = issueDate;
+    public Ticket(GovAuthorities authorityName) {
+        this.fineID = IDGenerator.generateTicketID();
+        this.issueDate = DateTimeUtils.getCurrentZonedDateTime();
         this.authorityName = authorityName;
-        this.isPaid = isPaid;
+        this.isPaid = false;
     }
 
     public String showDetails() {
