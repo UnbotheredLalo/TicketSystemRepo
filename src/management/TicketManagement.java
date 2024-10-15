@@ -2,16 +2,40 @@ package management;
 
 import ticket.Ticket;
 
+import java.time.ZonedDateTime;
+
 public interface TicketManagement {
 
-    void setTicket(String fineID); // Crear o asignar una multa por su ID
-    void addFineToList(String licensePlate); // Añadir multa a la lista vinculada a la placa
-    void deleteFine(String fineID); // Eliminar multa por su ID
-    Ticket searchTicketByLicense(String licensePlate); // Buscar multas asociadas a una placa
-    double getDiscount(String dateInfo); // Calcular descuento en base a la fecha
-    double calculateFine(); // Calcular monto de la multa
-    String getGovAuthorityName(Ticket ticket); //Obtener el nombre de la autoridad que la impuso
-    String getUMA(Ticket ticket); //Obtener el Valor UMA de la multa
-    String getFineDescription(Ticket ticket); //Obtener descripción de la multa impuesta
+    Ticket searchTicketByLicense(String licensePlate);
+    double calculateFine();
+    String getGovAuthorityName(Ticket ticket);
+    String getUMA(Ticket ticket);
+    String getFineDescription(Ticket ticket);
+    void deleteFine(long fineID);
+    void setTicket(long fineID);
+    /*
+    * This assigns a Ticket by assigning an ID manually; whether you use this method
+    or the constructor given on 'Ticket' class, you'll be creating a Ticket object
+    with a unique ID. This method throws an exception if the entered ID is repeated.
+
+    * @params fineID, the fine ID is manually entered instead of being randomly generated.
+     */
+
+    void addFineToList(String offenderKey);
+    /*
+    * This method adds a newly created fine to the list once it was assigned to the
+    offender by linking it with his/her/its license plate/CURP/NRP.
+
+    * @params offenderKey, the key which the offender gets identified with,
+    such as CURP (natural person), NRP (Legal entity) or the license plates
+    of the offender's car
+    */
+
+    double getDiscount(ZonedDateTime issueDate);
+    /*
+    Gets the amount of the fine with the discount applied based on the fine's
+    date application.
+    It varies depending on the type of fine
+    */
 
 }
