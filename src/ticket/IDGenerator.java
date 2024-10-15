@@ -3,7 +3,6 @@ package ticket;
 import java.util.Random;
 
 public class IDGenerator {
-    private long fineID;
 
     public static long generateTicketID() {
         Random randomID = new Random();
