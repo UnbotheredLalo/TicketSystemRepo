@@ -1,12 +1,18 @@
 package payment;
 
+import datetimeutils.DateTimeUtils;
 import ticket.Category;
+import ticket.DatesAssignment;
+
+import java.time.LocalDate;
 
 public interface Discount {
 
-    public int MAJOR_DISCOUNT  = 10;
-    public int MINOR_DISCOUNT  = 20;
-    public int DEADLINE = 30;
+    LocalDate paymentDeadline = DatesAssignment.issuedDate.plusDays(30);
+
+    int MAJOR_DISCOUNT  = 10;
+    int MINOR_DISCOUNT  = 20;
+    int DEADLINE = 30;
 
     /**
      * This method returns the discount percentage and the total amount depending on the date,

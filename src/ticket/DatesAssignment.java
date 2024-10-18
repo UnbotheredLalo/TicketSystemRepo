@@ -1,5 +1,7 @@
 package ticket;
 
+import datetimeutils.DateTimeUtils;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
@@ -9,16 +11,13 @@ import static validator.Validator.validatePastDate;
 
 public class DatesAssignment {
 
-    private static LocalDate pastIssuedDate;
-    private static LocalDate issuedDate;
+    public static LocalDate pastIssuedDate;
+    public static LocalDate issuedDate;
     private ZonedDateTime issuedDateTime;
     private LocalTime issuedHour;
+    public static ZonedDateTime currentDate = ZonedDateTime.now();
+    public long daysSinceIssue = ChronoUnit.DAYS.between(issuedDate, currentDate);
 
-    /**
-     * This method allows to assign a past date if it wasnt assigned at the exact moment
-     * @param date
-     */
-    public void assignDate(LocalDate date) { this.issuedDate = date; }
 
     /**
      * allows the User to enter a det in a format String with a "YYYY-MM-DD" format
@@ -55,7 +54,11 @@ public class DatesAssignment {
         return Math.max(30 - daysPassed, 0);
     }
 
-    public static long daysSinceIssue() {
+    /**
+     * Method shows how many days have passed since the imposed ticket and the actual date
+     * @return
+     */
+    public static long countDaysSinceIssue() {
         return ChronoUnit.DAYS.between(issuedDate, ZonedDateTime.now());
     }
 
