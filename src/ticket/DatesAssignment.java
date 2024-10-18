@@ -46,7 +46,7 @@ public class DatesAssignment {
     /**
      * This method  returns how many days are left for paying, Depending on how many days
      * have passed, you'll have the opportunity to get a discount when making an early payment
-     * @param issueDate
+     * @param issuedDate
      * @return if the deadline has already passed, this method will return 0, otherwise,
      * it'll return the days left for paying without interests
      */

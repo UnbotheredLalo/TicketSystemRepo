@@ -1,17 +1,36 @@
 package civil;
 
+import payment.Discount;
 import ticket.Category;
 import ticket.GovAuthorities;
 import ticket.Ticket;
 
-public class Civil extends Ticket {
+public class Civil extends Ticket implements Discount {
 
     private Category civilType = Category.CIVIL;
-    private static final int MINIMUM_FINE_CIVIL = 20;
-    private static final double MAX_DISCOUNT_CIVIL = 0.30;
 
     public Civil(Category civilType, GovAuthorities authorityName) {
         super(authorityName);
         this.civilType = civilType;
+    }
+
+    @Override
+    public double applyDiscounts(long daysSinceIssue, Category category, double fineAmount) {
+
+        if (daysSinceIssue <= Discount.MAJOR_DISCOUNT) {
+            double percentage = (1 - Category.CIVIL.maxDiscount);
+            System.out.println("Tienes un descuento del " + percentage + "%. Total a pagar: ");
+            return fineAmount * percentage;
+
+        } else if (daysSinceIssue <= Discount.MINOR_DISCOUNT) {
+            double percentage = (1 - Category.CIVIL.maxDiscount / 3);
+            System.out.println("Tienes un descuento del " + percentage + "%. Total a pagar: ");
+            return fineAmount * percentage;
+
+        } else if (daysSinceIssue <= Discount.DEADLINE) {
+            System.out.println("Descuentos no disponibles. Total a pagar: ");
+            return fineAmount;
+        }
+        throw new IllegalStateException("Días desde la emisión inválidos o categoría no manejada.");
     }
 }
