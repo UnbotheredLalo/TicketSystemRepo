@@ -1,6 +1,5 @@
 package transit;
 
-import payment.Discount;
 import ticket.Category;
 import ticket.GovAuthorities;
 import ticket.Ticket;

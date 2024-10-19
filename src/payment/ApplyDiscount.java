@@ -3,28 +3,32 @@ package payment;
 import datetimeutils.DateTimeUtils;
 import ticket.Category;
 
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import ticket.DatesAssignment;
 
 public class ApplyDiscount implements Discount{
+
+
+    public static LocalDate paymentDeadline = DateTimeUtils.issuedDate.plusDays(30);
+
+    public static final int MAJOR_DISCOUNT  = 10;
+    public static final int MINOR_DISCOUNT  = 20;
+    public static final  int DEADLINE = 30;
 
     @Override
     public double applyDiscounts(long daysSinceIssue, Category category, double fineAmount) {
 
-        if (daysSinceIssue <= Discount.MAJOR_DISCOUNT) {
+        if (daysSinceIssue <= MAJOR_DISCOUNT) {
             return applyMajorDiscount(fineAmount, category);
 
-        } else if (daysSinceIssue <= Discount.MINOR_DISCOUNT) {
+        } else if (daysSinceIssue <= MINOR_DISCOUNT) {
             return applyMinorDiscount(fineAmount, category);
 
-        } else if (daysSinceIssue <= Discount.DEADLINE) {
+        } else if (daysSinceIssue <= DEADLINE) {
             System.out.println("Descuentos no disponibles. Total a pagar: ");
             return fineAmount;
-
         } else {
-            return Charges.calculateInterest(fineAmount,Charges.daysLate);
+            throw new IllegalArgumentException("Puede que tu fecha de pago se haya vencido." +
+                    "Favor de verificar tu fecha límite de pago");
         }
     }
 
