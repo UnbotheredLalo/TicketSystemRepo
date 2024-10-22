@@ -44,7 +44,7 @@ public enum Type {
     MEDIDAS_SANITARIAS(Category.COMMERCIAL, "Falta de medidas sanitarias en locales comerciales", 900);
 
     private final Category category;
-    private final int valueUMA;
+    public final int valueUMA;
     private final String description;
 
     Type(Category category, String description, int valueUMA) {
