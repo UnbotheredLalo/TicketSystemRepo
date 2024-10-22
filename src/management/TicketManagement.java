@@ -1,27 +1,25 @@
 package management;
 
+import ticket.Category;
 import ticket.Ticket;
 
-import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public interface TicketManagement {
 
-    Ticket searchTicketByLicense(String licensePlate);
-    double calculateFine();
-    String getGovAuthorityName(Ticket ticket);
-    String getUMA(Ticket ticket);
-    String getFineDescription(Ticket ticket);
-    void deleteFine(long fineID);
+    double processTicket(Ticket ticket);
+    Map<Category, ArrayList<Ticket>> groupByCategory(ArrayList<Ticket> tickets);
+    List<Ticket> sortByCategory(ArrayList<Ticket> tickets);
+    List<Ticket> sortByDate(ArrayList<Ticket> tickets);
+    List<Ticket> removePaid(ArrayList<Ticket> tickets);
+    List<Ticket> filterPaid(ArrayList<Ticket> tickets);
+    List<Ticket> filterUnpaid(ArrayList<Ticket> tickets);
+    List<Ticket> filterByUMAValue(ArrayList<Ticket> tickets);
 
-    /**
-    * This assigns a Ticket by assigning an ID manually; whether you use this method
-    * or the constructor given on 'Ticket' class, you'll be creating a Ticket object
-    * with a unique ID. This method throws an exception if the entered ID is repeated.
-
-    * @param fineID, the fine ID is manually entered instead of being randomly generated.
-     */
-    void setTicket(long fineID);
-
+    /* TODO. Ver una manera de agregar estos metodos a la clase de TicketServie
     /**
     * This method adds a newly created fine to the list once it was assigned to the
     * offender by linking it with his/her/its license plate/CURP/NRP.
@@ -29,15 +27,7 @@ public interface TicketManagement {
     * @param offenderKey, the key which the offender gets identified with,
     * such as CURP (natural person), NRP (Legal entity) or the license plates
     * of the offender's car
-    */
+
     void addFineToList(String offenderKey);
-
-    /**
-    * Gets the amount of the fine with the discount applied based on the fine's
-    * date application. It varies depending on the type of fine
-     *
-    */
-    double getDiscount(ZonedDateTime issueDate);
-
-
+     */
 }

@@ -3,14 +3,15 @@ package transit;
 import ticket.Category;
 import ticket.GovAuthorities;
 import ticket.Ticket;
+import offender.Offender;
+import ticket.Type;
 
 public class Transit extends Ticket {
 
-    public Category trafficType = Category.TRAFFIC ;
+    public static final Category TRAFFIC = Category.TRAFFIC ;
 
-    public Transit(Category trafficType,
-                   GovAuthorities authorityName) {
-        super(authorityName);
-        this.trafficType = trafficType;
+    public Transit(GovAuthorities authorityName, Offender offender, Type type) {
+
+        super(authorityName, offender, type);
     }
 }

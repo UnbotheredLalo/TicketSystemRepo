@@ -1,18 +1,12 @@
 package payment;
 
-import datetimeutils.DateTimeUtils;
 import ticket.Category;
 
-import java.time.LocalDate;
-
-public class ApplyDiscount implements Discount{
-
-
-    public static LocalDate paymentDeadline = DateTimeUtils.issuedDate.plusDays(30);
+public class ApplyDiscount implements Discount {
 
     public static final int MAJOR_DISCOUNT  = 10;
     public static final int MINOR_DISCOUNT  = 20;
-    public static final  int DEADLINE = 30;
+    public static final int DEADLINE = 30;
 
     @Override
     public double applyDiscounts(long daysSinceIssue, Category category, double fineAmount) {
